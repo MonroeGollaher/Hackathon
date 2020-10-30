@@ -17,7 +17,7 @@ export default class ValuesController {
   create(e){
     e.preventDefault()
     let data = {
-        title: e.target.title.value, 
+        title: e.target.imageUrl.value, 
         description: e.target.description.value
     }
 
