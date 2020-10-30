@@ -4,17 +4,16 @@ import BaseController from "../utils/BaseController";
 import { postService } from "../services/PostService"
 // import { commentService } from "../services/CommentService"
 
-export class ProfilesController extends BaseController {
+export class PostController extends BaseController {
   constructor() {
-    super("profile");
+    super("");
     this.router
-      .get("/:id/posts", this.getUserPosts)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)
   }
-  async getUserProfile(req, res, next) {
+  async getUserPosts(req, res, next) {
     try {
-      let profile = await profilesService.getProfile(req.userInfo);
+      let profile = await postService.getProfile(req.userInfo);
       res.send(profile);
     } catch (error) {
       next(error);

@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const Profile = new Schema(
   {
-    subs: [{ type: String, unique: true }],
     _id: { type: String, required: true },
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
