@@ -5,23 +5,43 @@ import { postService } from "../services/PostService"
 
 export class PostController extends BaseController {
   constructor() {
-    super("");
+    super("api/posts");
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get("", this.getUserPosts)
+      .get("", this.getAll)
+      .get("/user", this.getMyPosts)
+      .post('', this.create)
+      .delete('/:id', this.delete)
   }
-  // async getUserPosts(req, res, next) {
-  //   try {
-  //     let profile = await postService.getProfile(req.userInfo);
-  //     res.send(profile);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
 
-  async getUserPosts(req, res, next) {
+  async getAll(req, res, next) {
     try {
-      let userPosts = await postService.getPostsByUserId(req.params.id);
+      let userPosts = await postService.getAll({ isPrivate: false });
+      res.send(userPosts)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getMyPosts(req, res, next) {
+    try {
+      let userPosts = await postService.getMyPosts({ userId: req.userInfo.id })
+      res.send(userPosts)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async create(req, res, next) {
+    try {
+      req.body.userId = req.userInfo.id
+      let userPosts = await postService.create(req.body)
+      res.send(userPosts)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async delete(req, res, next) {
+    try {
+      let userPosts = await postService.delete(req.userInfo.id, req.params.id)
       res.send(userPosts)
     } catch (error) {
       next(error)

@@ -23,7 +23,7 @@ export class ProfilesController extends BaseController {
 
   async getUserPosts(req, res, next) {
     try {
-      let userPosts = await postService.getPostsByUserId(req.params.id);
+      let userPosts = await postService.getMyPosts(req.params.id);
       res.send(userPosts)
     } catch (error) {
       next(error)

@@ -3,20 +3,22 @@ const Schema = mongoose.Schema;
 
 const Post = new Schema(
   {
-    title: { type: String, required: true}, 
-    description: { type: String, required: true},
-    creatorId: { type: String, ref: "Profile", required: true },
-    _id: { type: String, required: true },
-    imgUrl: { type: String, required: true, default: "//placehold.it/200" }
+    // _id: { type: String, required: true },
+    title: { type: String, required: true },
+    body: { type: String, required: true },
+    imgUrl: { type: String, required: true, default: "//placehold.it/200" },
+    isPrivate: { type: Boolean, required: true, default: false },
+    userId: { type: String, ref: "Profile", required: true },
     // NOTE If you wish to add additional public properties for Posts do so here
   },
-  { timestamps: true, _id: false, toJSON: { virtuals: true } }
+  { timestamps: true, _id: true, toJSON: { virtuals: true } }
 );
 
+
 Post.virtual("creator", {
-    localField: "creatorId", 
-    ref: "Profile", 
-    foreignField: "_id", 
-    justOne: true
+  localField: "userId",
+  ref: "Profile",
+  foreignField: "_id",
+  justOne: true
 })
 export default Post;

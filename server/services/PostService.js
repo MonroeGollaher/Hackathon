@@ -3,24 +3,24 @@ import { BadRequest } from "../utils/Errors";
 
 class PostService {
 
-  async find(query = {}) {
+  async getAll(query = {}) {
     let post = await dbContext.Post.find(query).populate("creator", "-updatedAt -subs");
     return post;
   }
-  async findById(id) {
-    let post = await dbContext.Post.findById(id);
+  async getMyPosts(id) {
+    let post = await dbContext.Post.find({ userId: id });
     if (!post) {
       throw new BadRequest("Invalid Id");
     }
     return post;
   }
 
-  async getPostsByUserId(userId) {
-    return await dbContext.Post.find({ creatorId: userId })
-  }
-
   async delete(userId, id) {
-    return await dbContext.Post.findOneAndDelete({ userId, _id: id })
+    let post = await dbContext.Post.findOneAndDelete({ userId, _id: id })
+    if (!post) {
+      throw new BadRequest("Invalid Id");
+    }
+    return post;
   }
 
   async create(data) {
