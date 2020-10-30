@@ -70,14 +70,14 @@ class ProfileService {
       _id: user.id
     });
     profile = await createProfileIfNeeded(profile, user);
-    await mergeSubsIfNeeded(profile, user);
+    // await mergeSubsIfNeeded(profile, user);
     return profile;
   }
   /**
-​    * Updates profile with the request body, will only allow changes to editable fields
-​    * @param {any} user Auth0 user object
-​    * @param {any} body Updates to apply to user object
-​    */
+     * Updates profile with the request body, will only allow changes to editable fields
+     * @param {any} user Auth0 user object
+     * @param {any} body Updates to apply to user object
+     */
   async updateProfile(user, body) {
     let update = sanitizeBody(body);
     let profile = await dbContext.Profile.findOneAndUpdate(

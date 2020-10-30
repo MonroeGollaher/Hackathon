@@ -8,9 +8,9 @@ export class ProfilesController extends BaseController {
   constructor() {
     super("api/profile");
     this.router
-    .use(Auth0Provider.getAuthorizedUserInfo)
-      .get("/:id/posts", this.getUserPosts)
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)
+      .get("/:id/posts", this.getUserPosts)
   }
   async getUserProfile(req, res, next) {
     try {
@@ -21,20 +21,13 @@ export class ProfilesController extends BaseController {
     }
   }
 
-  async getUserPosts(req, res, next){
+  async getUserPosts(req, res, next) {
     try {
-      let userPosts = await postService.getPostsByUserId(req.params.id); 
+      let userPosts = await postService.getPostsByUserId(req.params.id);
       res.send(userPosts)
     } catch (error) {
       next(error)
     }
   }
 
-  async createProfileIfNeeded(req, res, next){
-    try {
-      
-    } catch (error) {
-      
-    }
-  }
 }

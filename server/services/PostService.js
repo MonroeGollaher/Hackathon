@@ -3,7 +3,7 @@ import { BadRequest } from "../utils/Errors";
 
 class PostService {
 
-  async find(query={}) {
+  async find(query = {}) {
     let post = await dbContext.Post.find(query).populate("creator", "-updatedAt -subs");
     return post;
   }
@@ -15,16 +15,16 @@ class PostService {
     return post;
   }
 
-  async getpostsByUserId(userId){
-    return await dbContext.Post.find({ creatorId: userId})
+  async getPostsByUserId(userId) {
+    return await dbContext.Post.find({ creatorId: userId })
   }
 
-  async delete(userId, id){
-    return await dbContext.Post.findOneAndDelete( { userId, _id: id })
+  async delete(userId, id) {
+    return await dbContext.Post.findOneAndDelete({ userId, _id: id })
   }
 
-  async create(data){
-      return await dbContext.Post.create(data)
+  async create(data) {
+    return await dbContext.Post.create(data)
   }
 }
 
