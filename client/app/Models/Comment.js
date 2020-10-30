@@ -1,6 +1,7 @@
 import {ProxyState} from "../AppState.js"
 
 export default class Comment {
+  constructor(){
   constructor(data){
     this._id = data._id
     this.author = data.author
