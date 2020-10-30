@@ -6,10 +6,10 @@ import { postService } from "../services/PostService"
 
 export class ProfilesController extends BaseController {
   constructor() {
-    super("profile");
+    super("api/profile");
     this.router
+    .use(Auth0Provider.getAuthorizedUserInfo)
       .get("/:id/posts", this.getUserPosts)
-      .use(Auth0Provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)
   }
   async getUserProfile(req, res, next) {
@@ -27,6 +27,14 @@ export class ProfilesController extends BaseController {
       res.send(userPosts)
     } catch (error) {
       next(error)
+    }
+  }
+
+  async createProfileIfNeeded(req, res, next){
+    try {
+      
+    } catch (error) {
+      
     }
   }
 }
