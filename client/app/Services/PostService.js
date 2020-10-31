@@ -1,6 +1,6 @@
 import { ProxyState } from '../AppState.js'
 import { api } from './AxiosService.js'
-import Post from '../../../server/models/Post.js'
+import Post from '../Models/Post.js'
 
 class PostService {
   async getPosts() {
@@ -19,4 +19,4 @@ class PostService {
 
 }
 
-export const profileService = new PostService()
+export const postService = new PostService()

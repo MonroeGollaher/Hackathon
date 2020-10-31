@@ -13,7 +13,7 @@
 <body>
     <header>
         <nav class="navbar navbar-dark navbar-expand bg-dark text-light">
-            <button type="button" class="btn border-0 bg-transparent text-light" data-target="#postModal" data-toggle="modal" onclick="app.postController()">
+            <button type="button" class="btn border-0 bg-transparent text-light" data-target="#postModal" data-toggle="modal">
                 <i class="fas fa-plus"></i>
             </button>
             <!-- MODAL -->
@@ -27,21 +27,22 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form action="">
+                      <form onsubmit="app.postController.create(event)">
                         <div class="form-group text-dark">
                             <label for="imageUrl">Post an Image</label>
-                            <input type="url" class="form-control" id="imageUrl" aria-describedby="" placeholder="Image URL">
+                            <input type="url" class="form-control" name="imageUrl" id="imageUrl" aria-describedby="" placeholder="Image URL">
                         </div>
                         <div class="form-group text-dark">
                             <label for="imageDescription">Image Description</label>
-                            <input type="text" class="form-control" id="imageDescription" aria-describedby="" placeholder="Image Description">
+                            <input type="text" class="form-control" name="description" id="imageDescription" aria-describedby="" placeholder="Image Description">
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Post</button>
+                          </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Post</button>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -59,7 +60,7 @@
     </header>
 
     <main class="container-fluid">
-        <div class="row">
+        <div class="row" id="posts">
             <div class="col">
                 <div class="row" id="cards">
 

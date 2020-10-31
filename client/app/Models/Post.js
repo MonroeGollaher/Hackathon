@@ -13,8 +13,8 @@ export default class Post{
 
   get PostCard(){
     return /*html */`
-    <div class="col-3" onclick="app.postController">
-      <div class="p-2 border: rounded bg-gray">
+    <div class="col-3" onclick="app.postController()">
+      <div class="p-2 border: rounded bg-gray shadow-lg">
         <img src="${this.imgUrl}" alt="">
         <h2>${this.title}</h2>
         <h4>${this.author}</h4>
