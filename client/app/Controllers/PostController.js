@@ -13,14 +13,16 @@ function _drawPosts() {
 export default class PostController {
   constructor() {
     ProxyState.on("posts", _drawPosts);
+    _drawPosts()
     console.log("hello from post controller");
   }
 
   create(e){
     e.preventDefault()
     let data = {
-        image: e.target.imageUrl.value, 
-        description: e.target.description.value
+        imgUrl: e.target.imageUrl.value, 
+        body: e.target.imageDescription.value,
+
     }
 
     postService.create(data)
@@ -28,8 +30,21 @@ export default class PostController {
     console.log("create button");
   }
 
+  inspectPost(postId){
+   let post = ProxyState.posts.find(p=> p._id == postId)
+//    let template = ""
+//    template += post.PostTemplate
+//    console.log(post);
+//    console.log(template);
+   document.getElementById("post").innerHTML = post.PostTemplate;
+  }
+
   delete(id){
       postService.delete(id)
   }
+
+//   toggleVisibility(){
+//       document.getElementById("toggleVisibility").classList.add("hidden")
+//   }
 
 }

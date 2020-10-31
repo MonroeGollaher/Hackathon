@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Post = new Schema(
   {
     // _id: { type: String, required: true },
-    title: { type: String, required: true },
+    title: { type: String, required: true, default: "Post" },
     body: { type: String, required: true },
     imgUrl: { type: String, required: true, default: "//placehold.it/200" },
     isPrivate: { type: Boolean, required: true, default: false },
