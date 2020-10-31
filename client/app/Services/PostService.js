@@ -20,6 +20,11 @@ class PostService {
     await api.delete('/posts/', id)
   }
 
+  async addComment(comment){
+    await api.post("/comments", comment)
+    this.getPosts()
+  }
+
 }
 
 export const postService = new PostService()

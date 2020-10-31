@@ -10,6 +10,7 @@ export default class Post{
     this.imgUrl = data.imgUrl || "https://via.placeholder.com/150"
     this.body = data.body || ""
     this.count = data.count
+    this.creator = data.creator
   }
 
   get PostCard(){
@@ -32,6 +33,15 @@ export default class Post{
       <h1>${this.title}</h1>
       <h4>${this.author}</h4>
       <p>${this.body}</p>
+      <form onsubmit="app.postController.addComment(event, '${this._id}')">
+        <div class="form-group text-dark">
+            <label for="imageDescription">Image Description</label>
+            <input type="text" class="form-control" name="commentText" id="comment" aria-describedby="" placeholder="Add Comment">
+        </div>
+        <button class="btn bg-primary" type="submit">Add Comment</button>
+      </form>
+      
+      
     </div>
     `
   }

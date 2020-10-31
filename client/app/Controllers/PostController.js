@@ -39,6 +39,23 @@ export default class PostController {
    document.getElementById("post").innerHTML = post.PostTemplate;
   }
 
+  addComment(e, id){
+    e.preventDefault()
+    let post = ProxyState.posts.find(p => p._id == id)
+    console.log(post);
+    let postId = post._id
+    let userId = post.creator._id
+
+    let comment = {
+        body: e.target.commentText.value,
+        userId: userId,
+        postId: postId, 
+    }
+    postService.addComment(comment)
+    e.target.reset()
+
+  }
+
   delete(id){
       postService.delete(id)
   }
