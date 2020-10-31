@@ -7,8 +7,8 @@ export class CommentController extends BaseController {
   constructor() {
     super("api/comments");
     this.router
-      .use(Auth0Provider.getAuthorizedUserInfo)
       .get("", this.getAll)
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .get("/:id", this.getById)
       .post('', this.createComment)
       .delete('/:id', this.deleteComment)
@@ -16,7 +16,7 @@ export class CommentController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      let comments = await commentService.getAll({ isPrivate: false });
+      let comments = await commentService.getAll();
       res.send(comments)
     } catch (error) {
       next(error)
