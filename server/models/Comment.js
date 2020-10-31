@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const Comment = new Schema(
   {
     body: [{ type: String, required: true }],
-    author: {type: String, required: true, default: "User"},
+    author: { type: String, required: true, default: "User" },
     voteCount: { type: Number, required: true, default: 0 },
+    voteArr: { type: Array, required: true, default: [] },
     imgUrl: { type: String },
     userId: { type: String, ref: "Profile", required: true },
     postId: { type: String, ref: "Post", required: true }
