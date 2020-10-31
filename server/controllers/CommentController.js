@@ -1,7 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController";
-import { commentService } from "../services/CommentService.js"
-// import { commentService } from "../services/CommentService"
+import { commentService } from "../services/CommentService"
+
 
 export class CommentController extends BaseController {
   constructor() {
@@ -33,6 +33,7 @@ export class CommentController extends BaseController {
   async createComment(req, res, next) {
     try {
       req.body.userId = req.userInfo.id
+      req.body.author = req.userInfo.name
       let comments = await commentService.create(req.body)
       res.send(comments)
     } catch (error) {

@@ -1,6 +1,9 @@
 import Value from "./Models/Value.js"
 import { EventEmitter } from "./Utils/EventEmitter.js"
 import { isValidProp } from "./Utils/isValidProp.js"
+import Post from "./Models/Post.js"
+import Comment from "./Models/Comment.js"
+
 
 class AppState extends EventEmitter {
   user = {}
@@ -9,6 +12,8 @@ class AppState extends EventEmitter {
   values = []
   /** @type {Post[]} */
   posts = []
+  /**@type {Comment{}} */
+  comments = []
 }
 
 export const ProxyState = new Proxy(new AppState(), {

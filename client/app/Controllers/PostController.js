@@ -1,20 +1,26 @@
 import { ProxyState } from "../AppState.js";
 import { postService } from "../Services/PostService.js";
+import {commentService} from "../Services/CommentService.js"
 
 //Private
 function _drawPosts() {
     let template = ""
-    console.log("posts");
     ProxyState.posts.forEach(p => template += p.PostCard)
     document.getElementById("posts").innerHTML = template  
-}   
+}
+
+function _drawComments(){
+let template = ""
+ProxyState.comments.forEach(c => template += c.Comment)
+document.getElementById("comments").innerHTML = template
+}
 
 //Public
 export default class PostController {
   constructor() {
     ProxyState.on("posts", _drawPosts);
+    ProxyState.on("comments", _drawComments)
     _drawPosts()
-    console.log("hello from post controller");
   }
 
   create(e){
@@ -26,30 +32,22 @@ export default class PostController {
 
     postService.create(data)
     e.target.reset()
-    console.log("create button");
   }
 
   inspectPost(postId){
-   let post = ProxyState.posts.find(p=> p._id == postId)
-//    let template = ""
-//    template += post.PostTemplate
-//    console.log(post);
-//    console.log(template);
-   document.getElementById("post").innerHTML = post.PostTemplate;
+    let post = ProxyState.posts.find(p=> p._id == postId)
+    document.getElementById("post").innerHTML = post.PostTemplate
+    commentService.getComments()
   }
 
   addComment(e, id){
     e.preventDefault()
-    let post = ProxyState.posts.find(p => p._id == id)
-    console.log(post);
-    let postId = post._id
-    let userId = post.creator._id
 
     let comment = {
         body: e.target.commentText.value,
-        postId: postId, 
+        postId: id
     }
-    postService.addComment(comment)
+    commentService.addComment(comment)
     e.target.reset()
 
   }

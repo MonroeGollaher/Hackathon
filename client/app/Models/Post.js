@@ -40,8 +40,8 @@ export default class Post{
         </div>
         <button class="btn bg-primary" type="submit">Add Comment</button>
       </form>
-      
-      
+      <div id="comments">
+      </div>
     </div>
     `
   }

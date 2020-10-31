@@ -6,17 +6,8 @@ export default class Comment {
     this.author = data.author
     this.body = data.body 
     this.user_id = data.user_id
-    this.post_id = data.post_id
+    this.postId = data.postId
     this.count = data.count
-  }
-
-  get CommentForm(){
-    return /*html */ `
-    <form class="col" onsubmit="app.commentController.create(event)">
-      <input type="text" name="add" id="add" placeholder="Add your comment...">
-      <button type="submit">&plus</button>
-    </form>
-    `
   }
 
   get Comment(){
