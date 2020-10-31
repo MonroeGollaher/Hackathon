@@ -16,7 +16,7 @@ export class ProfilesController extends BaseController {
   }
   async getUserComments(req, res, next) {
     try {
-      let comment = await commentService.getMyComment(req.params.id)
+      let comment = await commentService.getMyComment(req.params.id);
       res.send(comment)
     } catch (error) {
       next(error)
