@@ -9,6 +9,9 @@ const Post = new Schema(
     imgUrl: { type: String, required: true, default: "//placehold.it/200" },
     isPrivate: { type: Boolean, required: true, default: false },
     userId: { type: String, ref: "Profile", required: true },
+    voteCount: { type: Number, required: true, default: 0 },
+    voteArr: { type: Array, required: true, default: [] }
+
     // NOTE If you wish to add additional public properties for Posts do so here
   },
   { timestamps: true, _id: true, toJSON: { virtuals: true } }

@@ -1,7 +1,7 @@
-import {ProxyState} from "../AppState.js"
+import { ProxyState } from "../AppState.js"
 
-export default class Post{
-  constructor(data){
+export default class Post {
+  constructor(data) {
     this._id = data._id
     this.title = data.title || ""
     this.email = data.name
@@ -9,11 +9,12 @@ export default class Post{
     this.userId = data.userId
     this.imgUrl = data.imgUrl || "https://via.placeholder.com/150"
     this.body = data.body || ""
-    this.count = data.count
+    this.count = data.voteCount
+    this.voteArr = data.voteArr
     this.creator = data.creator
   }
 
-  get PostCard(){
+  get PostCard() {
     return /*html */`
     <div class="col-3" onclick="app.postController.inspectPost('${this._id}')">
       <div class="p-2 border: rounded bg-gray shadow-lg">
@@ -26,7 +27,7 @@ export default class Post{
     `
   }
 
-  get PostTemplate(){
+  get PostTemplate() {
     return /*html */`
     <div class="col">
       <img src="${this.imgUrl}" alt="">

@@ -1,17 +1,18 @@
-import {ProxyState} from "../AppState.js"
+import { ProxyState } from "../AppState.js"
 
 export default class Comment {
-  constructor(data){
+  constructor(data) {
     this._id = data._id
     this.author = data.author
-    this.body = data.body 
+    this.body = data.body
     this.user_id = data.user_id
     this.postId = data.postId
-    this.count = data.count
+    this.count = data.voteCount
+    this.voteArr = data.voted
   }
 
-  get Comment(){
-  return /*html*/`
+  get Comment() {
+    return /*html*/`
     <div class="col">
       <h4>${this.author}</h4>
       <p>${this.body}</p>
