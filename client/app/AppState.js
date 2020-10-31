@@ -12,7 +12,7 @@ class AppState extends EventEmitter {
   values = []
   /** @type {Post[]} */
   posts = []
-  /**@type {Comment{}} */
+  /**@type {Comment[]} */
   comments = []
 }
 
