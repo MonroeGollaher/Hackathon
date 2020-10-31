@@ -22,7 +22,6 @@ export default class PostController {
     let data = {
         imgUrl: e.target.imageUrl.value, 
         body: e.target.imageDescription.value,
-
     }
 
     postService.create(data)
@@ -48,7 +47,6 @@ export default class PostController {
 
     let comment = {
         body: e.target.commentText.value,
-        userId: userId,
         postId: postId, 
     }
     postService.addComment(comment)
